@@ -4,53 +4,59 @@ const logic = () => {
   let arr = [];
   let arr1 = [];
   return setTimeout(() => {
-    let tr = document.querySelectorAll('tbody tr td:nth-child(1)')
+    let tr = document.querySelectorAll('tbody tr .tabHovermin')
     let tableHover = document.querySelectorAll('.tableHover')
-    arr = Array.from(tr)
+    arr = Array.prototype.slice.call(tr)
     arr1 = Array.from(tableHover)
     arr.forEach(item => {
-      item.onmouseover = async function () {
+      item.onmouseenter = async function () {
         try {
           if(cancelTokenSource){
-            cancelTokenSource.cancel('bo may dit con me may')
+            cancelTokenSource.cancel('Cancel Token')
           }
           cancelTokenSource = axios.CancelToken.source();
           let res = await axios.get(
-            `https://625e2146d434c6001c56e391.mockapi.io/inforDetail?id=${item.className}`,
+            `https://625e2146d434c6001c56e391.mockapi.io/inforDetail?id=${item.id}`,
             { cancelToken: cancelTokenSource.token }
           )
-          // console.log(res.data);
+            console.log(arr1[`${item.id}`]);
+
           arr1.map(item => {
-            let a = res.data[0].MSN.value + res.data[0].TCB.value + res.data[0].MCH.value;
-            let b = res.data[0].TCB.percentage;
+            let totalValue = res.data[0].MSN.value + res.data[0].TCB.value + res.data[0].MCH.value;
+            let inforMSN = res.data[0].MSN;
+            let inforTCB = res.data[0].TCB;
+            let inforMCH = res.data[0].MCH;
             return item.innerHTML = `
                 <tr>
                   <td>MNS</td>
-                  <td>${res.data[0].MSN.quantity}</td>
-                  <td>${res.data[0].MSN.percentage}</td>
-                  <td>${res.data[0].MSN.updateDate}</td>
-                  <td>${res.data[0].MSN.value}</td>
+                  <td>${inforMSN.quantity}</td>
+                  <td>${inforMSN.percentage}</td>
+                  <td>${inforMSN.updateDate}</td>
+                  <td>${inforMSN.value}</td>
                 </tr>
                 <tr>
                   <td>TCB</td>
-                  <td>${res.data[0].TCB.quantity}</td>
-                  <td style=${b - 50000 > 0 ? '' : 'color:red'}>${b - 50000 > 0 ? b : '-' + b}</td>
-                  <td>${res.data[0].TCB.updateDate}</td>
-                  <td>${res.data[0].TCB.value}</td>
+                  <td>${inforTCB.quantity}</td>
+                  <td style=${inforTCB.percentage - 50000 > 0 ? '' : 'color:red'}>
+                    ${inforTCB.percentage - 50000 > 0 ? inforTCB.percentage : '-' + inforTCB.percentage}
+                  </td>
+                  <td>${inforTCB.updateDate}</td>
+                  <td>${inforTCB.value}</td>
                 </tr>
                 <tr>
                   <td>MCH</td>
-                  <td>${res.data[0].MCH.quantity}</td>
-                  <td>${res.data[0].MCH.percentage}</td>
-                  <td>${res.data[0].MCH.updateDate}</td>
-                  <td>${res.data[0].MCH.value}</td>
+                  <td>${inforMCH.quantity}</td>
+                  <td>${inforMCH.percentage}</td>
+                  <td>${inforMCH.updateDate}</td>
+                  <td>${inforMCH.value}</td>
                 </tr>
                 <tr>
                   <td colspan="4">Total</td>
-                  <td>${a}</td>
+                  <td>${totalValue}</td>
                 </tr>
               `
           })
+
         }
         catch (error) {
           if (axios.isCancel(error)) {
@@ -66,45 +72,4 @@ const logic = () => {
 }
 export default logic;
 
-//     axios({
-        //       method: 'GET',
-        //       url: `https://625e2146d434c6001c56e391.mockapi.io/inforDetail?id=${item.className}`,
-        //       data: null,
-        //     }).then(res => {
-        //       console.log(res.data[0])
-        //       arr1.map(item => {
-        //         let a = res.data[0].MSN.value + res.data[0].TCB.value + res.data[0].MCH.value;
-        //         let b = res.data[0].TCB.percentage;
-        //         return item.innerHTML = `
-        //             <tr>
-        //               <td>MNS</td>
-        //               <td>${res.data[0].MSN.quantity}</td>
-        //               <td>${res.data[0].MSN.percentage}</td>
-        //               <td>${res.data[0].MSN.updateDate}</td>
-        //               <td>${res.data[0].MSN.value}</td>
-        //             </tr>
-        //             <tr>
-        //               <td>TCB</td>
-        //               <td>${res.data[0].TCB.quantity}</td>
-        //               <td style=${b - 50000 > 0 ? '' : 'color:red'}>${b-50000 > 0 ? b : '-'+b}</td>
-        //               <td>${res.data[0].TCB.updateDate}</td>
-        //               <td>${res.data[0].TCB.value}</td>
-        //             </tr>
-        //             <tr>
-        //               <td>MCH</td>
-        //               <td>${res.data[0].MCH.quantity}</td>
-        //               <td>${res.data[0].MCH.percentage}</td>
-        //               <td>${res.data[0].MCH.updateDate}</td>
-        //               <td>${res.data[0].MCH.value}</td>
-        //             </tr>
-        //             <tr>
-        //               <td colspan="4">Total</td>
-        //               <td>${a}</td>
-        //             </tr>
-        //           `
-        //       })
-        //     })
-        //       .catch(err => {
-        //         console.log(err);
-        //       })
 

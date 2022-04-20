@@ -26,10 +26,22 @@ const test = () => {
       };
       return `
         <tr>
-          <td class='${id}'>${name}
+          <td id='${id}' class='tabHovermin'>${name}
             <div>
               <table>
                 <thead>
+                  <tr class='headerTab' colspan="5">
+                    <td colspan="4">
+                      <input type="radio" id="huey" name="drone"  value="huey" >
+                      <label for="huey">Historycal deals</label>
+
+                      <input type="radio" id="dewey" name="drone" value="dewey">
+                      <label for="dewey">Dewey</label>
+                    </td>
+                    <td>
+                      Download
+                    </td>
+                  </tr>
                   <tr>
                     <th>TICKER</th>
                     <th>QUANTITY</th>
@@ -40,11 +52,7 @@ const test = () => {
                 </thead>
                 <tbody class='tableHover'>
                     <tr>
-                      <td>MNS</td>
-                      <td>15</td>
-                      <td>5625990</td>
-                      <td>5625990</td>
-                      <td>000</td>
+
                     </tr>
                 </tbody>
               </table>
