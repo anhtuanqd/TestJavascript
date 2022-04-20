@@ -1,0 +1,78 @@
+body {
+  color: white;
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+thead {
+  background-color: #2A3040;
+  font-size: 18px;
+}
+
+thead tr th {
+  padding: 10px;
+}
+
+tbody {
+  background-color: #21242D;
+}
+
+tbody tr:hover {
+  background-color: rgba(76, 90, 118, 0.8);
+  cursor: pointer;
+}
+
+tbody tr td:nth-child(1) {
+  max-width: 0;
+  width: 30%;
+  text-align: left;
+  position: relative;
+}
+
+tbody tr td:nth-child(1) div {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border: solid 2px white;
+}
+
+tbody tr td:nth-child(1) div thead .headerTab {
+  border-bottom: solid 1px white;
+}
+
+tbody tr td:nth-child(1) div thead .headerTab td {
+  text-align: left;
+}
+
+tbody tr td:nth-child(1) div thead .headerTab td label {
+  padding-right: 20px;
+}
+
+tbody tr td:nth-child(1) div thead .headerTab td:last-child {
+  cursor: pointer;
+}
+
+tbody tr td:nth-child(1) div thead .headerTab td:last-child:hover {
+  background-color: rgba(76, 90, 118, 0.8);
+}
+
+tbody tr td:nth-child(1) div tbody tr td {
+  background-color: #34373e;
+  color: white;
+  border: solid 1px white;
+}
+
+tbody tr td:nth-child(1):hover div {
+  display: block;
+  z-index: 999;
+}
+
+tbody td {
+  padding: 10px;
+}

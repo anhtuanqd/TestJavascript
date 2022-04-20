@@ -61,7 +61,9 @@ const test = () => {
           <td>${Number(shares).format(2)}</td>
           <td>${percentage}</td>
           <td>${moment(last_update).format("DD/MM/YYYY")}</td>
-          <td style=${share_volume - 50 > 0 ? '' : 'color:red'}>${share_volume - 50 > 0 ? `+` : `-`} ${share_volume}</td>
+          <td style=${share_volume - 50 > 0 ? '' : 'color:red'}>
+            ${share_volume - 50 > 0 ? `+` : `-`} ${share_volume}
+          </td>
           <td>${price_range.start} ~ ${price_range.end}</td>
           <td>${moment(transaction_date).format("DD/MM/YYYY")}</td>
         </tr>
