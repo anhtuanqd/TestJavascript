@@ -72,7 +72,7 @@ const test = () => {
     table.innerHTML = dataList;
   })
     .catch(err => {
-      console.log(err);
+        console.log(err);
     })
 }
 

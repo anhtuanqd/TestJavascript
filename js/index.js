@@ -1,7 +1,5 @@
-import test from './test.js'
-import logic from './logic.js'
-import resize from './resize.js'
+import logic from './logic.js';
+import test from './test.js';
 test()
 logic()
-resize()
 
