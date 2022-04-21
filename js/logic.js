@@ -58,7 +58,7 @@ const logic = () => {
         }
 
     })
-  }, 1000)
+  }, 2000)
 }
 export default logic;
 
