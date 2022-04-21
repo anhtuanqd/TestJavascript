@@ -1,6 +1,7 @@
 import axios from 'axios';
-let cancelTokenSource;
+
 const logic = () => {
+  let cancelTokenSource;
   let arr = [];
   let arr1 = [];
   return setTimeout(() => {
@@ -10,17 +11,14 @@ const logic = () => {
     arr1 = Array.from(tableHover)
     arr.forEach(item => {
       item.onmouseenter = async function () {
-        try {
-          if(cancelTokenSource){
-            cancelTokenSource.cancel('Cancel Token')
+          if (typeof cancelTokenSource != typeof undefined) {
+            cancelTokenSource.cancel('Từ từ thôi a ơiiiiii')
           }
           cancelTokenSource = axios.CancelToken.source();
           let res = await axios.get(
             `https://625e2146d434c6001c56e391.mockapi.io/inforDetail?id=${item.id}`,
             { cancelToken: cancelTokenSource.token }
           )
-            console.log(arr1[`${item.id}`]);
-
           arr1.map(item => {
             let totalValue = res.data[0].MSN.value + res.data[0].TCB.value + res.data[0].MCH.value;
             let inforMSN = res.data[0].MSN;
@@ -58,16 +56,8 @@ const logic = () => {
           })
 
         }
-        catch (error) {
-          if (axios.isCancel(error)) {
-            cancelTokenSource.cancel("Rap chậm thôi")
-          } else {
-            throw error;
-          }
-        }
-      };
-    })
 
+    })
   }, 1000)
 }
 export default logic;
